@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: "Senha muito curta"
+            email:
+              blank: "Email vazio"
+            uid:
+              blank: "UID vazio"
+      messages:
+        record_invalid: "Registro inválido"
