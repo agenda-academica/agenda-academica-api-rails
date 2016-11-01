@@ -1,11 +1,11 @@
-class OrganizationPolicy < ApplicationPolicy
-  def can_handle_with_payables?
-    is_owned_by?(user)
-  end
+# class OrganizationPolicy < ApplicationPolicy
+#   def can_handle_with_payables?
+#     is_owned_by?(user)
+#   end
 
-  private
+#   private
 
-  def is_owned_by?(user)
-    user.present? && record.users.include?(user)
-  end
-end
+#   def is_owned_by?(user)
+#     user.present? && record.users.include?(user)
+#   end
+# end

@@ -12,7 +12,6 @@ user = User.find_or_create_by(email: 'foo@bar.com') do |u|
   u.password = 'foobar'
   u.first_name = 'Foo'
   u.last_name = 'Bar'
-  u.confirm
 end
 
 usjt      = Universidade.create(user: user , nome: 'Universidade São Judas Tadeu'                      , abreviacao: 'USJT'      , site: 'http://www.usjt.br')

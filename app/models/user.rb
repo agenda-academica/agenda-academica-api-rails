@@ -1,9 +1,11 @@
+require 'exponent-server-sdk'
+
 class User < ActiveRecord::Base
   has_many :universidades
 
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+          :recoverable, :rememberable, :trackable, :omniauthable
   include DeviseTokenAuth::Concerns::User
 
   before_validation :set_uid_as_email
@@ -18,5 +20,13 @@ class User < ActiveRecord::Base
 
   def set_uid_as_email
     self.uid = email if uid.blank?
+  end
+
+  def self.send_push_notification
+    exponent.publish(
+      exponentPushToken: 'ExponentPushToken[WgeYRaGKTOn5j3H8tPZMMh]',
+      message: 'Send Push Notification Test',
+      data: { foo: 'bar' },
+    )
   end
 end

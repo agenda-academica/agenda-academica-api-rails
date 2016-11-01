@@ -20,6 +20,7 @@ gem 'puma'
 gem 'platform-api'
 gem 'has_scope'
 gem 'exponent-server-sdk'
+gem 'whenever', require: false
 
 group :staging, :production do
   gem 'rails_stdout_logging'
