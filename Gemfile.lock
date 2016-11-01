@@ -69,7 +69,7 @@ GEM
       rails (< 6)
     diff-lcs (1.2.5)
     erubis (2.7.0)
-    excon (0.53.0)
+    excon (0.54.0)
     exponent-server-sdk (0.0.2)
       httparty
     fission (0.5.0)
@@ -143,9 +143,9 @@ GEM
     fog-json (1.0.2)
       fog-core (~> 1.0)
       multi_json (~> 1.10)
-    fog-local (0.3.0)
+    fog-local (0.3.1)
       fog-core (~> 1.27)
-    fog-openstack (0.1.14)
+    fog-openstack (0.1.15)
       fog-core (>= 1.40)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
@@ -190,9 +190,9 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (1.2.0)
+    fog-vsphere (1.5.0)
       fog-core
-      rbvmomi (~> 1.8.0)
+      rbvmomi (~> 1.9)
     fog-xenserver (0.2.3)
       fog-core
       fog-xml
@@ -219,10 +219,10 @@ GEM
     inflecto (0.0.2)
     ipaddress (0.8.3)
     json (1.8.3)
-    jsonapi (0.1.1.beta5)
-      jsonapi-parser (= 0.1.1.beta2)
+    jsonapi (0.1.1.beta6)
+      jsonapi-parser (= 0.1.1.beta3)
       jsonapi-renderer (= 0.1.1.beta1)
-    jsonapi-parser (0.1.1.beta2)
+    jsonapi-parser (0.1.1.beta3)
     jsonapi-renderer (0.1.1.beta1)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -292,10 +292,11 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (11.3.0)
-    rbvmomi (1.8.2)
-      builder
-      nokogiri (>= 1.4.1)
-      trollop
+    rbvmomi (1.9.4)
+      builder (~> 3.2)
+      json (>= 1.8)
+      nokogiri (~> 1.5)
+      trollop (~> 2.1)
     redis (3.3.0)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
@@ -395,9 +396,6 @@ DEPENDENCIES
   spring
   webmock
   whenever
-
-RUBY VERSION
-   ruby 2.3.0p0
 
 BUNDLED WITH
    1.13.2
