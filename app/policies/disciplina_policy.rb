@@ -7,7 +7,8 @@ class DisciplinaPolicy < ApplicationPolicy
         :nome,
         :hora_inicio,
         :hora_fim,
-        :dia_semana
+        :dia_semana,
+        :notify_at
       ]
     else
       []
