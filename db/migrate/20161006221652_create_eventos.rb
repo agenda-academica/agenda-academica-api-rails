@@ -1,7 +1,7 @@
 class CreateEventos < ActiveRecord::Migration
   def change
     create_table :eventos do |t|
-      t.references :disciplina, index: true, foreign_key: true, null: true
+      t.references :disciplina, index: true, foreign_key: true
       t.string :tipo
       t.string :cor
       t.string :titulo
