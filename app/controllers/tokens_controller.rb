@@ -6,9 +6,9 @@ class TokensController < ApplicationController
 
   def create
     unless Token.where(user: current_user).first
-      @token = Token.new(token_params)
-      @token.user = current_user
-      @token.save!
+      @t = Token.new(token_params)
+      @t.user = current_user
+      @t.save!
     end
 
     render json: { success: true }
@@ -16,10 +16,10 @@ class TokensController < ApplicationController
 
   def send_test_notification
     @user = User.where(email: params[:email]).first
-    @token = Token.where(user: @user).first
+    @t = Token.where(user: @user).first
 
     exponent.publish(
-      exponentPushToken: @token.value,
+      exponentPushToken: @t.value,
       message: params[:message],
       data: { foo: 'bar' },
     )
@@ -31,9 +31,7 @@ class TokensController < ApplicationController
 
   def token_params
     if params[:token]
-      params
-        .require(:token)
-        .permit(*policy(@token || Token.new).permitted_attributes)
+      params.require(:token).permit(*policy(@t || Token.new).permitted_attributes)
     else
       {}
     end
