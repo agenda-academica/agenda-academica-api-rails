@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :first_name, :last_name, :uid, :provider
+  attributes :id, :email, :first_name, :last_name, :uid, :provider, :avatar
 
   # def avatar_url
   #   object.avatar.url
