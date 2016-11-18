@@ -4,9 +4,13 @@ class TurmaPolicy < ApplicationPolicy
       [
         :curso_id,
         :nome,
-        :email,
         :site,
-        :outras_informacoes
+        :outras_informacoes,
+        representantes: [
+          :nome,
+          :sobrenome,
+          :email
+        ]
       ]
     else
       []
