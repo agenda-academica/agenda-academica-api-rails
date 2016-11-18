@@ -2,6 +2,7 @@ require 'exponent-server-sdk'
 
 class User < ActiveRecord::Base
   has_many :universidades
+  has_one :token, :dependent => :destroy
 
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
