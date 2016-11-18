@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   resources :tokens, only: [:create] do
     get :send_test_notification, on: :collection
   end
-  mount_devise_token_auth_for 'User', at: '/auth'
+  mount_devise_token_auth_for 'User', at: '/auth', controllers: {
+    registrations: 'registrations'
+  }
 end
