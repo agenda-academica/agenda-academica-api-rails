@@ -3,6 +3,7 @@ class MaterialPolicy < ApplicationPolicy
     if create? || update?
       [
         :turma_id,
+        :titulo,
         :data_envio,
         anexos: [
           :titulo,
