@@ -10,8 +10,7 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   before_validation :set_uid_as_email
-
-  # mount_uploader :avatar, AvatarUploader
+  after_create :send_welcome_email
 
   validates :provider, :uid, :email, presence: true
 
@@ -29,5 +28,9 @@ class User < ActiveRecord::Base
       message: 'Send Push Notification Test',
       data: { foo: 'bar' },
     )
+  end
+
+  def send_welcome_email
+    UserRegistrationMailer.welcome_email(self.id).deliver_later
   end
 end
