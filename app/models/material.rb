@@ -12,6 +12,8 @@ class Material < ActiveRecord::Base
   delegate :unidade, to: :curso
   delegate :curso, to: :turma
 
+  after_create :send_share_email_to_representantes
+
   def as_json(*)
     super(:include => {
       :user => {},
@@ -20,5 +22,11 @@ class Material < ActiveRecord::Base
       :curso => {},
       :turma => {}
     })
+  end
+
+  def send_share_email_to_representantes
+    self.turma.representantes.each_with_index do |representante, index|
+      MaterialMailer.share_email_to_representante(self.id, index).deliver_later
+    end
   end
 end
