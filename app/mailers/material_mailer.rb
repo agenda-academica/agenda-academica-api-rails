@@ -4,6 +4,7 @@ class MaterialMailer < ApplicationMailer
   def share_email_to_representante(id, representante_index)
     @material = load_model id
     @representante = @material.turma.representantes[representante_index]
+    @user = @material.user
     mail to: @representante['email'], subject: @material.titulo
   end
 

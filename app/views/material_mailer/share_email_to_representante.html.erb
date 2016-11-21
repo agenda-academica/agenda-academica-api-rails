@@ -11,7 +11,7 @@
                     Olá <%= @representante['nome'] %>,
                   </h2>
                   <p style="margin:0;margin-bottom:30px;color:#666;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;font-weight:300;line-height:20px;">
-                    O professor <span style="color:#00488D;">André</span> compartilhou com você a seguinte lista de materiais:
+                    O professor <span style="color:#00488D;"><%= @user.first_name %></span> compartilhou com você a seguinte lista de materiais:
                   </p>
                   <ul style="margin:0;margin-bottom:30px;color:#666;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;font-weight:300;line-height:20px;">
                     <% @material.anexos.each do |anexo| %>
