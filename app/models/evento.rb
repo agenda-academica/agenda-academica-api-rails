@@ -29,7 +29,6 @@ class Evento < ActiveRecord::Base
   end
 
   def schedule_push_notification
-    binding.pry
     Resque.enqueue_at(
       EventoPushNotificationJob.date_to_perform(self),
       EventoPushNotificationJob,
