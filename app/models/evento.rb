@@ -14,6 +14,9 @@ class Evento < ActiveRecord::Base
   delegate :curso, to: :turma
   delegate :turma, to: :disciplina
 
+  after_create :schedule_push_notification
+  after_destroy :destroy_scheduled_push_notification
+
   def as_json(*)
     super(:include => {
       :user => {},
@@ -23,5 +26,19 @@ class Evento < ActiveRecord::Base
       :turma => {},
       :disciplina => {},
     })
+  end
+
+  def schedule_push_notification
+    binding.pry
+    Resque.enqueue_at(
+      EventoPushNotificationJob.date_to_perform(self),
+      EventoPushNotificationJob,
+      user_id: self.user.id,
+      evento_id: self.id,
+    )
+  end
+
+  def destroy_scheduled_push_notification
+    Resque.remove_delayed_selection { |args| args[0]['evento_id'] == self.id }
   end
 end
