@@ -1,0 +1,3 @@
+web=2
+resque=2
+resque-scheduler=2
