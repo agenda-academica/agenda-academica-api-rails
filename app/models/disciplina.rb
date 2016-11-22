@@ -13,6 +13,7 @@ class Disciplina < ActiveRecord::Base
   delegate :curso, to: :turma
 
   after_create :schedule_push_notification
+  after_destroy :destroy_scheduled_push_notification
 
   def as_json(*)
     super(:include => {
@@ -31,5 +32,9 @@ class Disciplina < ActiveRecord::Base
       user_id: self.user.id,
       disciplina_id: self.id,
     )
+  end
+
+  def destroy_scheduled_push_notification
+    Resque.remove_delayed_selection { |args| args[0]['disciplina_id'] == self.id }
   end
 end
