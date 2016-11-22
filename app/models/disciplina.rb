@@ -12,6 +12,8 @@ class Disciplina < ActiveRecord::Base
   delegate :unidade, to: :curso
   delegate :curso, to: :turma
 
+  after_create :schedule_push_notification
+
   def as_json(*)
     super(:include => {
       :user => {},
@@ -20,5 +22,14 @@ class Disciplina < ActiveRecord::Base
       :curso => {},
       :turma => {}
     })
+  end
+
+  def schedule_push_notification
+    Resque.enqueue_at(
+      DisciplinaPushNotificationJob.date_to_perform(self),
+      DisciplinaPushNotificationJob,
+      user_id: self.user.id,
+      disciplina_id: self.id,
+    )
   end
 end
