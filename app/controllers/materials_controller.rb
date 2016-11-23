@@ -1,7 +1,7 @@
 class MaterialsController < ApplicationController
   respond_to :json
   before_action :load_collection, only: %i[show update destroy]
-  after_action :verify_authorized
+  after_action :verify_authorized, except: %i[resend_share_email]
   skip_after_action :verify_authorized, only: [:index]
   after_action :verify_policy_scoped, only: %i[]
 
@@ -40,6 +40,12 @@ class MaterialsController < ApplicationController
       ok: true,
       id: id
     }
+  end
+
+  def resend_share_email
+    @material = Material.find params[:id]
+    @material.send_share_email_to_representantes
+    render json: @material
   end
 
   private
