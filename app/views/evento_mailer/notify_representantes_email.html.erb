@@ -1,0 +1,40 @@
+<div style="box-sizing:border-box;width:100%;margin-bottom:30px;background:#ffffff;border:1px solid #f0f0f0">
+  <table style="box-sizing:border-box;width:100%;border-spacing:0;border-collapse:separate!important" width="100%">
+    <tbody>
+      <tr>
+        <td style="box-sizing:border-box;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top;padding:30px" valign="top">
+          <table style="box-sizing:border-box;width:100%;border-spacing:0;border-collapse:separate!important" width="100%">
+            <tbody>
+              <tr>
+                <td style="box-sizing:border-box;padding:0;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;vertical-align:top" valign="top">
+                  <h2 style="margin:0;margin-bottom:30px;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-weight:300;line-height:1.5;font-size:24px;color:#666!important">
+                    Olá <%= @representante['nome'] %>,
+                  </h2>
+                  <p style="margin:0;margin-bottom:30px;color:#666;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;font-weight:300;line-height:20px;">
+                    @ professor(a) <span style="color:#00488D;"><%= @user.first_name %></span> agendou o seguinte evento:
+                  </p>
+                  <p style="margin:0;color:#666;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;font-weight:300;line-height:20px;color:#00488D;font-weight:bold;text-align:center;padding-bottom:20px;font-size:25px;">
+                    <%= @evento.titulo %>
+                  </p>
+                  <table style="margin:0;margin-bottom:30px;color:#666;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;font-weight:300;line-height:20px;width:100%;background-color:#f4f4f4;padding:20px 25px;border-radius:3px;">
+                    <tr style="margin:0;color:#666;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;font-weight:300;line-height:20px">
+                      <td width="30%" height="25">Data</td>
+                      <td width="70%" height="25"><%= @evento.data_inicio.strftime('%d/%m/%Y') %></td>
+                    </tr>
+                    <tr style="margin:0;color:#666;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;font-weight:300;line-height:20px">
+                      <td width="30%" height="25">Horário</td>
+                      <td width="70%" height="25"><%= @evento.hora_inicio.strftime('%Hh%M') %> às <%= @evento.hora_fim.strftime('%Hh%M') %></td>
+                    </tr>
+                  </table>
+                  <p style="margin:0;margin-bottom:15px;color:#666;font-family:'Open Sans','Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;font-size:16px;font-weight:300;line-height:20px;">
+                    Informe seus colegas de sala sobre este evento e bons estudos!
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -14,7 +14,7 @@ class Evento < ActiveRecord::Base
   delegate :curso, to: :turma
   delegate :turma, to: :disciplina
 
-  after_create :schedule_push_notification
+  after_create :schedule_push_notification, :send_notify_representantes_email
   after_destroy :destroy_scheduled_push_notification
 
   def as_json(*)
@@ -39,5 +39,11 @@ class Evento < ActiveRecord::Base
 
   def destroy_scheduled_push_notification
     Resque.remove_delayed_selection { |args| args[0]['evento_id'] == self.id }
+  end
+
+  def send_notify_representantes_email
+    self.turma.representantes.each_with_index do |representante, index|
+      EventoMailer.notify_representantes_email(self.id, index).deliver_later
+    end
   end
 end
